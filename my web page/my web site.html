@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ravindu Niroshan photography — Portfolio</title>
+  <meta name="description" content="Personal portfolio website for Ravindu Niroshan: typing, graphic design, photography & photo editing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1220; --card:#151935; --text:#e7eaf6; --muted:#aab0d5; --accent:#3b278d; --accent-2:#10363d; --ring:rgba(124,92,255,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.2);
+    }
+    .light{ --bg:#f8fafc; --card:#ffffff; --text:#0b1220; --muted:#3f587c; --accent:#362a74; --accent-2:#003038; --ring:rgba(184, 78, 255, 0.493); }
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background:radial-gradient(1200px 800px at 80% -10%, rgba(124,92,255,.25), transparent 60%), radial-gradient(900px 600px at -10% 10%, rgba(0,212,255,.18), transparent 60%), var(--bg);
+      line-height:1.6; letter-spacing:.2px;
+    }
+    a{ color:inherit; text-decoration:none }
+    img{ max-width:100%; display:block }
+
+    /* Layout */
+    .container{ width:min(1100px, 90vw); margin-inline:auto }
+    header{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:color-mix(in srgb, var(--bg) 80%, transparent); border-bottom:1px solid color-mix(in srgb, var(--text) 12%, transparent); }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
+    .brand{ display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.3px }
+    .logo{ width:36px; aspect-ratio:1; border-radius:12px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow:var(--shadow) }
+    .nav a{ opacity:.85 }
+    .nav a:hover{ opacity:1 }
+
+    .menu{ display:flex; gap:22px; align-items:center }
+    .menu a{ font-weight:600 }
+    .menu button{ border:none; background:transparent; color:var(--text); cursor:pointer; font:inherit }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:12px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:0; cursor:pointer }
+    .ghost{ background:transparent; border:1px solid color-mix(in srgb, var(--text) 18%, transparent) }
+
+    /* Hero */
+    .grid-hero{ display:grid; grid-template-columns:1.2fr 1fr; gap:36px; padding:56px 0 24px }
+    .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; border:1px solid color-mix(in srgb, var(--text) 18%, transparent); color:var(--muted); font-size:.9rem }
+    h1{ font-size:clamp(2rem, 4vw, 3rem); line-height:1.2; margin:16px 0 10px }
+    .lead{ font-size:1.1rem; color:var(--muted) }
+    .hero-card{ background:linear-gradient(180deg, color-mix(in srgb, var(--card) 86%, transparent), color-mix(in srgb, var(--card) 96%, transparent)); border:1px solid color-mix(in srgb, var(--text) 12%, transparent); border-radius:20px; padding:22px; box-shadow:var(--shadow) }
+
+    /* Sections */
+    section{ padding:40px 0 }
+    h2{ font-size:clamp(1.6rem, 3vw, 2rem); margin:0 0 16px }
+    .sub{ color:var(--muted); margin-top:-4px; margin-bottom:16px }
+
+    /* Cards grid */
+    .grid{ display:grid; gap:18px }
+    .grid.cols-3{ grid-template-columns:repeat(3, 1fr) }
+    .grid.cols-2{ grid-template-columns:repeat(2, 1fr) }
+    .card{ background:var(--card); border:1px solid color-mix(in srgb, var(--text) 12%, transparent); border-radius:18px; padding:18px; box-shadow:var(--shadow); transition:transform .25s ease }
+    .card:hover{ transform:translateY(-3px) }
+    .chip{ display:inline-block; font-size:.85rem; padding:6px 10px; border-radius:999px; background:color-mix(in srgb, var(--accent) 20%, transparent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); margin:4px 6px 0 0 }
+
+    /* Projects */
+    .project img{ border-radius:14px; border:1px solid color-mix(in srgb, var(--text) 12%, transparent) }
+    .project h3{ margin:12px 0 8px }
+    .project p{ color:var(--muted) }
+
+    /* Contact */
+    form{ display:grid; gap:12px }
+    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid color-mix(in srgb, var(--text) 16%, transparent); background:color-mix(in srgb, var(--card) 96%, transparent); color:var(--text); outline: none }
+    input:focus, textarea:focus{ box-shadow:0 0 0 4px var(--ring) }
+
+    footer{ padding:30px 0 50px; color:var(--muted); border-top:1px solid color-mix(in srgb, var(--text) 12%, transparent) }
+
+    /* Responsive */
+    @media (max-width: 900px){ .grid-hero{ grid-template-columns:1fr; } .menu{ display:none } .menu.mobile{ display:flex; flex-direction:column; gap:12px; padding:12px 0 } .menu-toggle{ display:inline-flex } }
+    @media (min-width: 901px){ .menu-toggle{ display:none } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <span class="logo" aria-hidden="true"></span>
+        <img src = Untitled-1233.jpg width="100" height="100">
+        <span>Ravindu <span style="opacity:.0.7">Niroshan Photography</span></span>
+      </a>
+      <nav>
+        <button class="menu-toggle ghost" aria-expanded="false" aria-controls="mobileMenu">☰ Menu</button>
+        <div class="menu">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <button id="mode" class="ghost" title="Toggle theme">🌓 Theme</button>
+          <a class="btn" href="#contact">Hire Me</a>
+        </div>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="container menu mobile" hidden>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- Hero -->
+    <div class="grid-hero">
+      <div>
+        <span class="pill">👋 Hi, I'm <strong style="margin-left:6px">Ravindu</strong></span>
+        <h1> • Photographer • Photo editing & Retouching</h1>
+        <p class="lead">I photo editing and photo Retouching  and document formatting. Available for freelance projects and collaborations.</p>
+        <div style="display:flex; gap:12px; margin-top:18px">
+          <a class="btn" href="#projects">See My Work</a>
+          <a class="btn ghost" href="#contact">Get a Quote</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="IMG_7296.jpg" alt="Workspace with laptop and camera" />
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px">
+          <span class="chip">photo retouching</span>
+          <span class="chip">Photo Editing</span>
+          <span class="chip">colour garding</span>
+          <span class="chip">Photography</span>
+        </div>
+      </div>
+    </div>
+    
+         </div>
+        <div class="card">
+         <li><h3><u>Viwe this: <a href="https://www.facebook.com/ravinduniroshan54?rdid=W4xSpfZja1gt9O7T&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Gh3cHHAFH%2F#">RN photography Studio facebook Page</u></h3></li>  
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p class="sub">I'm a self‑taught creative focused on helping small businesses and individuals look professional online and in print.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <p>I specialize in <strong>Colour grading</strong>, <strong>photo retouching</strong>, and <strong>logo & poster design</strong> (reports,CVs,). My workflow is simple: understand the goal, design with intent, deliver on time.</p>
+          <p>Tools I use: Photoshop,Lightroom and MS Office.</p>
+        </div>
+        <div class="card">
+          <p><strong>Why work with me?</strong> I communicate clearly, share drafts quickly, and offer two rounds of revisions on every project. Let's build something great together.</p>
+          <ul>
+            <li>✔ Fast turnaround</li>
+            <li>✔ Friendly & reliable</li>
+            <li>✔ Affordable packages</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <p class="sub">What I do best</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Photo Editing</h3>
+          <p>Retouching, color correction, background removal,colour grading composites.</p>
+        </div>
+        <div class="card">
+          <h3>Graphic Design</h3>
+          <p>Logos, posters, business cards, social media posts, banners.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>MY Work</h2>
+      <p class="sub">A peek at recent work</p>
+      <div class="grid cols-3">
+        <article class="card project">
+          <img src="IMG_7495.jpg" alt="Minimal logo mockup"/>
+          <h3></h3>
+          <p></p>
+        </article>
+        <article class="card project">
+          <img src="IMG_3881.jpg" alt="Poster wall"/>
+          <h3></h3>
+          <p></p>
+        </article>
+        <article class="card project">
+          <img src="IMG_8739.jpg" alt="Photo retouch"/>
+          <h3></h3>
+          <p></p>
+        </article>
+        <article class="card project">
+          <img src="IMG_8415.jpg" alt="Photo retouch"/>
+          <h3></h3>
+          <p></p>
+        </article>
+        <article class="card project">
+          <img src="IMG_9189.jpg" alt="Photo retouch"/>
+          <h3></h3>
+          <p></p>
+        </article>
+        <article class="card project">
+          <img src="IMG_8829.jpg" alt="Photo retouch"/>
+          <h3></h3>
+          <p></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2>Services & Packages</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Starter</h3>
+          <p class="sub">Best for small tasks</p>
+          <ul>
+            <li>1 1/2 hours service</li>
+            <li>25-30 photos edited</li>
+          </ul>
+          <p><strong>From 10000/=</strong></p>
+        </div>
+        <div class="card">
+          <h3>stranded</h3>
+          <p class="sub">stranded Pakage</p>
+          <ul>
+            <li>2 hours service</li>
+            <li>30-35 photos edited</li>
+          </ul>
+          <p><strong>From 15000/=</strong></p>
+        </div>
+        <div class="card">
+          <h3>Start Wedding Pakage</h3>
+          <p class="sub">Wedding Pakage</p>
+          <ul>
+            <li>2 hours service</li>
+            <li>60-70 photo edited</li>
+            <li>Morning shoot</li>
+            <li>Wedding Coverage</li>
+            <li>pre shoot</li>
+            <li>L Largement photo with Frame 4 </li>
+          </ul>
+          <p><strong>From 100000/=</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="sub">Tell me about your project</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <form action="mailto:ravinduniroshan54@gmail.com" method="post" enctype="text/plain">
+            <label>
+              Name
+              <input name="name" type="text" required placeholder="Your name" />
+            </label>
+            <label>
+              Contact Number
+              <input name="name" type="number" required placeholder="Your name" />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" required placeholder="you@example.com" />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="5" required placeholder="What do you need?"></textarea>
+            </label>
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Quick Info</h3>
+          <p>Location: <strong>Sri Lanka</strong></p>
+          <p>Languages: English, Sinhala</p>
+          <p>Available: Mon–Sat</p>
+          <p>Also on: <a href="https://www.facebook.com/share/162iarB6Ny/">facebook</a> • <a href="https://www.tiktok.com/@ravinduniroshan08?_r=1&_d=el3e2f84bl3mm7&sec_uid=MS4wLjABAAAAqF2Gnir81DxuFvLeMarzNhLK_Qa1XRqo4bpAW2AGXCswpTAe4KNKJOVVnHP4k5tO&share_author_id=7188696908297290778&sharer_language=en&source=h5_m&u_code=e60gkfl81i8bld&timestamp=1756005710&user_id=7188696908297290778&sec_user_id=MS4wLjABAAAAqF2Gnir81DxuFvLeMarzNhLK_Qa1XRqo4bpAW2AGXCswpTAe4KNKJOVVnHP4k5tO&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7539934121491449607&share_link_id=d58429bf-8810-408d-bb2a-f5f3b6262e58&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1">tiktok</a> • <a href="https://www.instagram.com/_r_niroshan?igsh=OHRua3Ruajg5bXo1">Instagram</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+      <p>© <span id="year"></span> Ravindu Niroshan. All rights reserved.</p>
+      <div style="display:flex; gap:10px">
+        <a href="#home">Top ↑</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle with localStorage
+    const body = document.body;
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light'){ body.classList.add('light'); }
+
+    document.getElementById('mode').addEventListener('click', () => {
+      body.classList.toggle('light');
+      localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Mobile menu toggle
+    const btn = document.querySelector('.menu-toggle');
+    const mobile = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => {
+      const isOpen = mobile.hasAttribute('hidden') ? false : true;
+      if(isOpen){ mobile.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false'); }
+      else { mobile.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
